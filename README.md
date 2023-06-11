@@ -35,7 +35,44 @@ The Sphere after touching the cube it will disappeared and Press the key [R] the
 
 
 ## Program:
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+public class PlayerController : MonoBehaviour
+{
+    Rigidbody rb;
+    public GameObject WinText;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("scene2");
+        }
+    }
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "object")
+        {
+            Destroy(collision.gameObject);
+            WinText.SetActive(true);
+        }
+    }
+}
+
+```
 ## Output:
 ### After the Ball hit the cube:
 ![image](https://github.com/Shobika187/Redirecting-the-scene/assets/94508142/cbbdd39b-73fd-4eaf-84b3-52651fb2c46f)
